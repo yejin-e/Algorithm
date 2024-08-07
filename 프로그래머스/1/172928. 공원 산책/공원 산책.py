@@ -13,32 +13,31 @@ def solution(park, routes):
         n = int(n)
 
         if op == "N" and sx-n >= 0:        # 공원 벗어남 체크
-            sx -= n                        # 일단 해당 위치로 이동
-            for k in range(n):             # 해당 위치에서 이전 위치까지 하나씩 돌아보며       
-                if park[sx+k][sy] == "X":  # 장애물 만남 체크
-                    sx += n                # 만나면 이동 취소
+            for k in range(1, n+1):        # 이동할 위치까지   
+                if park[sx-k][sy] == "X":  # 장애물 만남 체크
                     break
-                
-                
+            else:                          # for-else: for문에서 break로 빠져나가면 else문 미실행
+                sx -= n                    # 이동 진행
+                                
         if op == "S" and sx+n < h :
-            sx += n
-            for k in range(n):          
-                if park[sx-k][sy] == "X":
-                    sx -= n
+            for k in range(1, n+1):        
+                if park[sx+k][sy] == "X":
                     break
+            else:
+                sx += n
                     
         if op == "W" and sy-n >= 0:
-            sy -= n
-            for k in range(n):              
-                if park[sx][sy+k] == "X":
-                    sy += n
+            for k in range(1, n+1):              
+                if park[sx][sy-k] == "X":
                     break
+            else:
+                sy -= n
                            
         if op == "E" and sy+n < w:
-            sy += n
-            for k in range(n):               
-                if park[sx][sy-k] == "X":
-                    sy -= n
+            for k in range(1, n+1):               
+                if park[sx][sy+k] == "X":
                     break
+            else:
+                sy += n
                     
     return sx, sy                
