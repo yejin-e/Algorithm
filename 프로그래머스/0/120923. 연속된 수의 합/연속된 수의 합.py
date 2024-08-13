@@ -6,8 +6,8 @@ def solution(num, total):
     for n in range(t-a, t+a+1):
         answer.append(n)
     
-    if num%2 == 0:    # 짝수개
-        x = sum(answer) - total      
+    if num%2 == 0:    # 짝수개       
+        x = (num+1) * (answer[0]+answer[-1]) // 2 - total    # sum() = 길이 * (처음+끝) // 2     
         if x == answer[0]:
             del answer[0]
         elif x == answer[-1]:
